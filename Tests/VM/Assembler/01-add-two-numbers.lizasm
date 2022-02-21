@@ -1,0 +1,15 @@
+; we need comments
+; x = 1 + 2
+; print(x)
+
+
+mut x
+settype x number
+add 1 2
+print_int $x
+
+const y
+settype y number
+add 1 2
+const_set y %stack_top
+print_int $y

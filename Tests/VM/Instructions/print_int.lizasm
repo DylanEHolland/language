@@ -1,0 +1,2 @@
+; create a mutable variable x
+print_int 1

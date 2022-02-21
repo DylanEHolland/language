@@ -1,7 +1,7 @@
 #pragma once
 
-namespace liz::backend {
+namespace liz::vm {
     enum opcode {
-        
+        ADD
     };
 }

@@ -1,8 +1,0 @@
-; we need comments
-; x = 1 + 2
-; print(x)
-
-
-let x
-settype x number
-add 1 2

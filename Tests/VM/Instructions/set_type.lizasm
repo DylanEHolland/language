@@ -1,0 +1,3 @@
+; create a mutable variable x
+imut x
+set_type x number
