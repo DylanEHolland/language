@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-. meta/common.sh;
+. meta/Common.sh;
 
 echo "Cleaning up..."
-rm -rf build;
+rm -rf Build;
