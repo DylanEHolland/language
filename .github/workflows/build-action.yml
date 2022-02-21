@@ -18,4 +18,4 @@ jobs:
       run: sudo apt install build-essential cmake -y
 
     - name: Meta/Build.sh
-      run: echo "\n\n\n" && ls && echo "\n\n\n"
+      run: echo "\n\n\n" && ls Meta && echo "\n\n\n"
