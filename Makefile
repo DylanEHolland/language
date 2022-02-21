@@ -5,3 +5,6 @@ build:
 
 clean:
 	@-sh Meta/Clean.sh;
+
+rebuild:
+	@-sh Meta/Rebuild.sh;
