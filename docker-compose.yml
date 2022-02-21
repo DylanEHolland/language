@@ -1,0 +1,9 @@
+'version': '3'
+services:
+  liz_linux_runner:
+    build:
+      context: .
+      dockerfile: Meta/Docker/Dockerfile
+    volumes:
+      - .:/src/liz
+    #command: []

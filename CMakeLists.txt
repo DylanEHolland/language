@@ -3,6 +3,7 @@ set(CMAKE_CXX_STANDARD 20)
 project(liz)
 
 add_subdirectory(Source)
+add_subdirectory(Tests)
 
 target_include_directories(
     common
