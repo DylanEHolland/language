@@ -22,3 +22,6 @@ prepare: clean docker-down
 
 rebuild:
 	@-sh Meta/Rebuild.sh;
+
+test:
+	@-sh Meta/Runtest.sh all

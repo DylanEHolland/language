@@ -19,6 +19,9 @@ jobs:
     runs-on: ubuntu-latest
     needs: running_build
     steps:
+    - uses: actions/checkout@v2
     - name: Meta/Build.sh
       run: sh Meta/Build.sh
+    - name: Meta/Runtests.sh
+      run: sh Meta/RunTest.sh
 
