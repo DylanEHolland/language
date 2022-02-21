@@ -10,5 +10,10 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+
+    - name: Setting up environment
+      run: apt update
+      run: apt install build-essential ninja cmake -y
+
     - name: Meta/Build.sh
-      run: make
+      run: sh Meta/Build.sh
