@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-. meta/Common.sh;
+. Meta/Common.sh;
 
 if [ ! -d Build ]; then
     mkdir Build;
