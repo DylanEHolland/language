@@ -5,4 +5,7 @@ if $IS_DARWIN; then
     NUM_CORES=`sysctl -n hw.ncpu`;
 else
     NUM_CORES=`nproc --all`;
+    echo "\n=======\n";
+    ls /proc;
+    echo "\n=======\n";
 fi;
