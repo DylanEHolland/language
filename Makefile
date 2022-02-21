@@ -1,7 +1,10 @@
 .PHONY: build
 
 build:
-	@-sh meta/build.sh;
+	@-sh Meta/Build.sh;
 
 clean:
-	@-sh meta/clean.sh;
+	@-sh Meta/Clean.sh;
+
+rebuild:
+	@-sh Meta/Rebuild.sh;

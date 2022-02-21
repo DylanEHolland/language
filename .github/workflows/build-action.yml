@@ -1,0 +1,21 @@
+name: Running CI
+
+on:
+  push:
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Setting up apt
+      run: sudo apt update
+
+    - name: Installing toolchain
+      run: sudo apt install build-essential cmake -y
+
+    - name: Meta/Build.sh
+      run: sh Meta/Build.sh
