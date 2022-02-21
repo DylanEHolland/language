@@ -12,10 +12,10 @@ jobs:
     - uses: actions/checkout@v2
 
     - name: Setting up apt
-      run: apt update
+      run: sudo apt update
 
     - name: Installing toolchain
-      run: apt install build-essential ninja cmake -y
+      run: sudo apt install build-essential ninja cmake -y
 
     - name: Meta/Build.sh
       run: sh Meta/Build.sh
