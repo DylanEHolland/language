@@ -23,5 +23,5 @@ jobs:
     - name: Meta/Build.sh
       run: sh Meta/Build.sh
     - name: Meta/Runtests.sh
-      run: sh Meta/RunTest.sh
+      run: sh Meta/Runtest.sh
 

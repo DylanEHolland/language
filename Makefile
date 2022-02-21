@@ -9,6 +9,9 @@ clean:
 docker-up:
 	@-docker compose up --build;
 
+docker-clean:
+	@-sh Meta/Docker/Clean.sh;
+
 docker-connect:
 	@-sh Meta/Docker/Connect.sh;
 
@@ -25,3 +28,5 @@ rebuild:
 
 test:
 	@-sh Meta/Runtest.sh all
+
+test-with-docker: docker-up

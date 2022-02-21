@@ -1,5 +1,7 @@
 FROM ubuntu:latest
 
-RUN mkdir -pv /src/liz
+RUN apt update;
+ENV DEBIAN_FRONTEND noninteractive;
+RUN apt install bash build-essential cmake -yq;
 COPY . /src/liz
-ENTRYPOINT [ "/bin/bash", "/src/liz/Meta/Docker/EnvironmentSetup.sh" ]
+ENTRYPOINT [ "bash", "/src/liz/Meta/Docker/EnvironmentSetup.sh"]
