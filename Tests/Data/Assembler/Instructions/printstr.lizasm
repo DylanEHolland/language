@@ -1,0 +1,10 @@
+; printstr $str
+; print a string to the screen, self explanatory
+
+printstr "This is a test"
+printstr "This is a, harder, test" ; Test for commas, we need them 
+; outside of strings for operands
+
+mut str ; test setting string to variable
+settype str string ; 
+printstr $str

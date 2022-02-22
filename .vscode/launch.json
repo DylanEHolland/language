@@ -2,16 +2,14 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Testing the Liz Assembler",
-            "type": "lldb",
-            "request": "launch",
-            "program": "${workspaceFolder}/Build/bin/lizas",
-            // "args": ["${file}"],
-            // "args": ["${workspaceRoot}/Tests/Data/Assembler/Instructions/mut.lizasm"],
-            "args": ["${workspaceRoot}/Tests/Data/Assembler/Examples/01-add-two-numbers.lizasm"],
+            "args": ["${file}"],
             "cwd": "${workspaceFolder}",
+            "isShellCommand": true,
+            "name": "Testing the Liz Assembler",
             "preLaunchTask": "Run CMake and Build",
-            "fileLocation": ["${workspaceRoot}/Test/Data/Assembler"]
+            "request": "launch",
+            "program": "Build/bin/lizas",
+            "type": "lldb",
         }
     ]
 }

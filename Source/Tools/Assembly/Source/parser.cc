@@ -10,19 +10,13 @@
  */
 
 #include <Tools/Assembly/Include/parser.h>
-#include <string>
+
 #include <iostream>
+#include <string>
 #include <vector>
 
-namespace liz::tools::assembly {
 
-    // void createIntermediate(std::vector<std::string> asmCodeLines) {
-    //     int n = 0;
-    //     for(auto line : asmCodeLines) {
-    //         std::cout << n << ". " << line << std::endl;
-    //         n++;
-    //     }
-    // }
+namespace liz::tools::assembly {
 
     void tokenizeCleanAssemblyCode(std::vector<std::string> asmCodeLines) {
         int n = 0;
@@ -30,9 +24,13 @@ namespace liz::tools::assembly {
         std::vector<std::string> lineTokens;
 
         for(auto line : asmCodeLines) {
-            std::cout << n << ". " << line << std::endl;
+            //std::cout << n << ". " << line << std::endl;
+            parseLineFromAssemblyCode(line);
+            break;
             n++;
         }
+
+        std::cout << std::endl;
     }
 
     void parseAssemblyCode(std::string asmCode) {
@@ -43,6 +41,16 @@ namespace liz::tools::assembly {
         asmCode = removeComments(asmCode);
         std::vector<std::string> asmCodeLines = splitIntoLines(asmCode);
         tokenizeCleanAssemblyCode(asmCodeLines);
+    }
+
+    std::vector<std::string> parseLineFromAssemblyCode(std::string asmCodeLine) {
+        /* Break line up into tokenized version of opcodes && operands */
+        std::vector<std::string> tokenizeLine;
+        for(int i = 0; i < asmCodeLine.length(); i++) {
+            std::cout << asmCodeLine[i];
+        }
+
+        return tokenizeLine;
     }
 
     std::vector<std::string> splitIntoLines(std::string asmCode) {

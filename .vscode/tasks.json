@@ -2,24 +2,27 @@
     "version": "2.0.0",
     "tasks": [
       {
+        "args": ["-rf", "Build/bin"],
+        "command": "rm",
+        "group": "build",
         "label": "Clear executable cache",
         "type": "shell",
-        "command": "rm",
-        "args": ["-rf", "Build/bin"]
+        "presentation": {
+          "reveal": "silent"
+        }
       },
       {
-        "label": "Run CMake and Build",
-        "type": "shell",
         "command": "Meta/Build.sh",
-        "group": "build",
-        "presentation": {
-          "reveal": "always"
-        },
         "dependsOn": "Clear executable cache",
+        "group": "build",
+        "label": "Run CMake and Build",
+        "presentation": {
+          "reveal": "silent"
+        },
         "problemMatcher": {
-          "base": "$gcc",
-          "fileLocation": ["${workspaceRoot}/Test/Data/Assembler"]
-        }
+          "base": "$gcc"
+        },
+        "type": "shell",
       }
     ]
 }

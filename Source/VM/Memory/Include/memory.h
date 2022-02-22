@@ -15,8 +15,16 @@ namespace liz::vm {
     };
 
     struct memoryCell {
+        int address;
         enum memoryType type;
         enum dataType blockType;
         struct memoryValue valueBlock;
+        bool dead;
+    };
+
+    struct memory {
+        struct stackRow *stackTop;
+        struct memoryCell *freed;
+        struct memoryCell *used;
     };
 }
