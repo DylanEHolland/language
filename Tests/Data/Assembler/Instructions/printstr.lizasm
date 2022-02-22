@@ -1,10 +1,26 @@
 ; printstr $str
 ; print a string to the screen, self explanatory
 
-printstr "This is a test"
-printstr "This is a, harder, test" ; Test for commas, we need them 
+; printstr "This is a test"
+; printstr "This is a, harder, test" ; Test for commas, we need them 
 ; outside of strings for operands
 
-mut str ; test setting string to variable
-settype str string ; 
-printstr $str
+; mut str ; test setting string to variable
+; settype str, string ; 
+; printstr $str
+
+; mut x
+; mut str
+
+; settype x, number
+; settype str, string
+
+; mov x, 25
+; printint $x ; use '$' when a variable is 
+; taken as a value and not a pointer
+
+; printstr "Hello World"
+; mov str, "This, is a test!"
+; printstr $str
+
+printstr "hello, world", "how are, you?"

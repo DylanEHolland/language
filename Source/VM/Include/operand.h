@@ -1,10 +1,15 @@
 #pragma once
+#include <VM/Memory/Include/memory.h>
 
 namespace liz::vm {
+    enum operandType {
+        opValue,
+        opRegister,
+        opFlag
+    };
+
     struct operand {
-        // pointer or value?
-        // auto pointer;
-        // auto value;
+        
     };
 
     struct operands {

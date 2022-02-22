@@ -7,6 +7,6 @@ add 3, 5 ; Can just add two numbers,
 ; should be stored at top of stack
 
 imut x
-settype x number
+settype x, number
 add 5, 15, x
 ; %stack_top should be 20

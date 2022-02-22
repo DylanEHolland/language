@@ -1,7 +1,7 @@
 {
-    "editor.codeActionsOnSave": {
-        "workbench.action.tasks.runTask": true
-    },
+    // "editor.codeActionsOnSave": {
+    //     "workbench.action.tasks.runTask": true
+    // },
     "files.associations": {
         "__bit_reference": "cpp",
         "__bits": "cpp",
@@ -73,7 +73,8 @@
     },
     "search.exclude": {
         "Build": true
-    }
+    },
+    "C_Cpp.errorSquiggles": "Disabled"
     // "emeraldwalk.runonsave": {
     //     "commands": [
     //         {

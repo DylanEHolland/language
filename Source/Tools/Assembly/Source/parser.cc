@@ -26,11 +26,8 @@ namespace liz::tools::assembly {
         for(auto line : asmCodeLines) {
             //std::cout << n << ". " << line << std::endl;
             parseLineFromAssemblyCode(line);
-            break;
             n++;
         }
-
-        std::cout << std::endl;
     }
 
     void parseAssemblyCode(std::string asmCode) {
@@ -46,9 +43,74 @@ namespace liz::tools::assembly {
     std::vector<std::string> parseLineFromAssemblyCode(std::string asmCodeLine) {
         /* Break line up into tokenized version of opcodes && operands */
         std::vector<std::string> tokenizeLine;
+
+        /* Extract strings from line */
+        std::vector<std::string> stringsList;
+        std::vector<int> stringBeginList;
+        std::string newString = "";
+        bool insideString = false;
+
         for(int i = 0; i < asmCodeLine.length(); i++) {
-            std::cout << asmCodeLine[i];
+            auto character = asmCodeLine[i];
+
+            if(character == '\"') {
+                insideString = !insideString;
+                if(!insideString) {
+                    /* if just turned off */
+                    stringsList.push_back(newString);
+                    newString = "";           
+                } else {
+                    /* or else just turned on */
+                    stringBeginList.push_back(i + 1);
+                }
+            } else {
+                if(insideString) {
+                    newString += character;
+                }
+            }
         }
+
+        int n = 0;
+        std::string newAsmCodeLine = "";
+        for(auto stringBeginAt : stringBeginList) {
+            auto replacerString = stringsList[n];
+            bool addedStringPlaceholder = false;
+            for(int i = 0; i < asmCodeLine.length(); i++) {
+                int endIndex = (stringBeginAt + replacerString.length());
+                // TODO: Fix this
+                if(i < stringBeginAt-1 || i > endIndex ) { // +1 for now due to parenthesis
+                     newAsmCodeLine += asmCodeLine[i];
+                }
+
+                if(i > (stringBeginAt-1) && !addedStringPlaceholder) {
+                    newAsmCodeLine += "{{#STR:" + std::to_string(i) + "}}";
+                    addedStringPlaceholder = true;
+                }
+            }
+
+            n += 1;
+            std::cout << newAsmCodeLine << std::endl;
+        }
+
+        
+        
+        // for(int i = 0; i < asmCodeLine.length(); i++) {
+        //     auto character = asmCodeLine[i];
+        //     newAsmCodeLine += character;
+        // }
+        
+        //std::cout << asmCodeLine << std::endl;
+        //std::cout << newAsmCodeLine << std::endl;
+
+        //
+
+        // for(int i = 0; i < asmCodeLine.length(); i++) {
+        //     std::cout << asmCodeLine[i];
+
+        //     if(!insideString) {
+                
+        //     }
+        // }
 
         return tokenizeLine;
     }

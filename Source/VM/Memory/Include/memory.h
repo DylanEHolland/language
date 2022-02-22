@@ -7,7 +7,7 @@ namespace liz::vm {
     enum memoryType {
         value,
         pointer,
-        variable
+        address
     };
 
     struct memoryValue {
