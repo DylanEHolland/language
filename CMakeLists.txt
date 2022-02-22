@@ -22,3 +22,9 @@ target_include_directories(
     PUBLIC
         "Source"
 )
+
+target_include_directories(
+    memory
+    PUBLIC
+        "Source"
+)
