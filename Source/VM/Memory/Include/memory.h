@@ -1,6 +1,6 @@
 #pragma once
-#include <VM/Include/types.h>
 
+#include <VM/Include/types.h>
 #include <VM/DataTypes/Include/number.h>
 
 namespace liz::vm {

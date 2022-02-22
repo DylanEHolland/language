@@ -30,7 +30,15 @@ target_include_directories(
 )
 
 target_include_directories(
-    lizas
+    assembly
     PUBLIC
         "Source"
 )
+
+target_include_directories(
+    lizas
+    PUBLIC
+        "Source"
+        "Include"
+)
+

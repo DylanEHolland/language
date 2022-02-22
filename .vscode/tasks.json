@@ -2,6 +2,12 @@
     "version": "2.0.0",
     "tasks": [
       {
+        "label": "Clear executable cache",
+        "type": "shell",
+        "command": "rm",
+        "args": ["-rf", "Build/bin"]
+      },
+      {
         "label": "Run CMake and Build",
         "type": "shell",
         "command": "Meta/Build.sh",
@@ -9,7 +15,11 @@
         "presentation": {
           "reveal": "always"
         },
-        "runOptions": { "runOn": "folderOpen" },
+        "dependsOn": "Clear executable cache",
+        "problemMatcher": {
+          "base": "$gcc",
+          "fileLocation": ["${workspaceRoot}/Test/Data/Assembler"]
+        }
       }
     ]
 }

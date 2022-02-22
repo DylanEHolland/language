@@ -21,8 +21,7 @@ namespace liz::common {
             std::cout << "Error: " << fileName << " does not exist" << std::endl;
             exit(-1);
         }
-
-        std::cout << "Uh oh";
+        
         return nullptr;
     }
 }

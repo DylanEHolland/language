@@ -1,5 +1,3 @@
-add_executable(lizvm
-    Source/main.cc
-)
+add_executable(lizvm main.cc)
 
 target_link_libraries(lizvm common vm)

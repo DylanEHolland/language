@@ -65,8 +65,15 @@
         "unordered_map": "cpp",
         "utility": "cpp",
         "vector": "cpp",
-        "filesystem": "cpp"
+        "filesystem": "cpp",
+        "deque": "cpp",
+        "fstream": "cpp",
+        "iomanip": "cpp",
+        "stack": "cpp"
     },
+    "search.exclude": {
+        "Build": true
+    }
     // "emeraldwalk.runonsave": {
     //     "commands": [
     //         {
