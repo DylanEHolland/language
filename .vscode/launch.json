@@ -4,20 +4,21 @@
         {
             "type": "bashdb",
             "request": "launch",
-            "name": "Run tests",
+            "name": "Compiled tests (object files)",
             "cwd": "${workspaceFolder}",
             "program": "Meta/Runtest.sh",
             "preLaunchTask": "Run CMake and Build"
         },
         {
-            "name": "Lizas test",
+            "name": "Lizas tests",
             "type": "lldb",
             "request": "launch",
             "program": "${workspaceFolder}/Build/bin/lizas",
             "args": ["Tests/Data/Assembler/Examples/01-add-two-numbers.lizasm"],
             "cwd": "${workspaceFolder}",
             "stopAtEntry": false,
-            "environment": []
+            "environment": [],
+            "preLaunchTask": "Run CMake and Build"
         }
     ]
 }

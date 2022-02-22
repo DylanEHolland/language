@@ -1,4 +1,7 @@
 {
+    "editor.codeActionsOnSave": {
+        "workbench.action.tasks.runTask": true
+    },
     "files.associations": {
         "__bit_reference": "cpp",
         "__bits": "cpp",
@@ -63,5 +66,14 @@
         "utility": "cpp",
         "vector": "cpp",
         "filesystem": "cpp"
-    }
+    },
+    // "emeraldwalk.runonsave": {
+    //     "commands": [
+    //         {
+    //             "match": "*.cc",
+    //             "isAsync": true,
+    //             "cmd": "echo 'I run for all files.'"
+    //         }
+    //     ]
+    // }
 }

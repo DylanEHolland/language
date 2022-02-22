@@ -28,3 +28,9 @@ target_include_directories(
     PUBLIC
         "Source"
 )
+
+target_include_directories(
+    lizas
+    PUBLIC
+        "Source"
+)

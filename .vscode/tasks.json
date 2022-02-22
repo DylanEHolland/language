@@ -7,10 +7,9 @@
         "command": "Meta/Build.sh",
         "group": "build",
         "presentation": {
-          "reveal": "always",
-          "panel": "new"
+          "reveal": "always"
         },
-        "runOptions": { "runOn": "folderOpen" }
+        "runOptions": { "runOn": "folderOpen" },
       }
     ]
 }

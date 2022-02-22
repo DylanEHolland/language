@@ -1,7 +1,7 @@
-add_executable(lizas Source/main.cc)
-
-add_library(assembler
-    Include/parse_asm.h
+add_executable(lizas 
+    Include/parse_asm.h    
+    
+    Source/main.cc
     Source/parse_asm.cc
 )
 
