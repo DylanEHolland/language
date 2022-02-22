@@ -31,12 +31,23 @@ namespace liz::tools::assembly {
 
     void dumpAssemblyLine(struct assemblyLine *node) {
         std::string output = "";
+        bool hasOps = false;
+
         if(node->instruction.length() > 0) {
             output += node->instruction;
         }
 
         for(auto oper : node->operands) {
+            hasOps = true;
             output += " " + oper;
+        }
+
+        if(hasOps && node->strings.size() > 0) {
+            output += " -> ";
+        }
+
+        for(auto str : node->strings) {
+            output += "\"" + str + "\" ";
         }
 
         std::cout << output << std::endl;
@@ -165,6 +176,7 @@ namespace liz::tools::assembly {
             }
         }
 
+        assemblyLineBuffer->strings = extractedLine->storedStrings;
         return assemblyLineBuffer;
     }
 
