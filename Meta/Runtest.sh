@@ -52,3 +52,5 @@ echo;
 echo "---";
 echo "Done.";
 echo "Number of failures:" $FAILURES;
+
+exit $FAILURES;
