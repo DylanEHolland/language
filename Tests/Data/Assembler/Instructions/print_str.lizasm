@@ -1,26 +1,4 @@
 ; print_str $str
 ; print a string to the screen, self explanatory
 
-print_str "This is a test"
-print_str "This is a, harder, test" ; Test for commas, we need them 
-; outside of strings for operands
-
-mut str ; test setting string to variable
-settype str, string ; 
 print_str $str
-
-mut x
-mut str
-
-settype x, number
-settype str, string
-
-mov x, 25
-printint $x; use '$' when a variable is 
-; taken as a value and not a pointer
-
-; print_str "Hello World"
-mov str, "This, is a test!"
-print_str $str
-
-print_str "hello, world", "how are, you?"

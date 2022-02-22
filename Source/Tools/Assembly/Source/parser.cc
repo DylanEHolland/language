@@ -142,6 +142,7 @@ namespace liz::tools::assembly {
 
         for(int i = 0; i < line.length(); i++) {
             auto character = line[i];
+            bool addChar = true;
 
             if(resetBuffer) {
                 buffer = "";
@@ -152,20 +153,18 @@ namespace liz::tools::assembly {
                 assemblyLineBuffer->instruction = buffer;
                 storedInstruction =  true;
                 resetBuffer = true;
+                addChar = false;
             } else if(character == ' ' && storedInstruction) {
-                trimming = true;
-            } else if(trimming && character != ' ') {
-                trimming = false;
+                addChar = false;
             } else if(storedInstruction && character == ',') {
                 assemblyLineBuffer->operands.push_back(buffer);
                 resetBuffer = true;
-            } else {
-                if(!trimming) {
-                    buffer += character;
-                }
+                addChar = false;
             }
 
-            //std::cout << character;
+            if(addChar) {
+                buffer += character;
+            }
         }
 
         if(buffer.length() > 0) {
