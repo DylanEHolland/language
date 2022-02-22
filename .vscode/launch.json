@@ -1,0 +1,23 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "bashdb",
+            "request": "launch",
+            "name": "Run build",
+            "cwd": "${workspaceFolder}",
+            "program": "Meta/Build.sh"
+        },
+        {
+            "type": "bashdb",
+            "request": "launch",
+            "name": "Run tests",
+            "cwd": "${workspaceFolder}",
+            "program": "Meta/Runtest.sh",
+            "presentation": {
+                "reveal": "always",
+                "panel": "new"
+            },
+        },
+    ]
+}

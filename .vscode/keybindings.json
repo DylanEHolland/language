@@ -1,0 +1,6 @@
+// {
+//     "key": "ctrl+a+b",
+//     "command": "workbench.action.tasks.runTask",
+//     "args": "Run CMake and Build"
+// }
+  

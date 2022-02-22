@@ -2,9 +2,10 @@
 
 . Meta/Common.sh;
 
-echo "[Meta/Build.sh]";
-sh Meta/Build.sh;# &> /dev/null || exit 1;
-echo "Done.\n=\n\n"
+$IS_DOCKER && \
+echo "[Meta/Build.sh]" && \
+sh Meta/Build.sh &> /dev/null && \
+echo "Done.\n=\n\n";
 
 
 RUN_ALL=false;

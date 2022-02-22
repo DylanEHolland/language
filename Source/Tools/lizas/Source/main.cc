@@ -10,7 +10,7 @@ int main(int argc, char **argv) {
     for(int i = 1; i < argc; i++) {
         std::cout << "Reading... " << argv[i] << std::endl;
         std::string buffer = liz::common::readFile(argv[i]);
-        std::cout << buffer;
+        //buffer;
     }
 
 
