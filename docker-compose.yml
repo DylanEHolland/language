@@ -1,0 +1,15 @@
+'version': '3'
+services:
+  liz_build_source:
+    build:
+      context: .
+      dockerfile: Meta/Docker/Dockerfile
+    command: ["Meta/Runtest.sh"]
+    volumes:
+      - ./:/src/liz
+      - build_dir:/src/liz/Build
+    environment:
+      LIZ_CONTAINER: 1
+
+volumes:
+  build_dir:
