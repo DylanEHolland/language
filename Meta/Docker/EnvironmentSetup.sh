@@ -9,7 +9,7 @@ fi;
 
 ARGS="";
 BASH_ENVIRONMENT="
-    HOME=\"$PWD\"
+    HOME=$PWD
 ";
 [ ! -z "$LIZ_CONTAINER" ] && BASH_ENVIRONMENT+="LIZ_CONTAINER=\"$LIZ_CONTAINER\"";
 SCRIPT_TO_RUN=$1;
@@ -29,10 +29,10 @@ fi;
 $RUN_SCRIPT && if [ ! -z "$FILE_BASE_NAME" ] || [ $IS_DOCKER ]; then
     if [ -f "$SCRIPT_TO_RUN" ]; then
         echo "[docker]" $RUN_WITH $SCRIPT_TO_RUN;
-        $IS_DOCKER || "[docker]" env -i $BASH_ENVIRONMENT bash -c "$SCRIPT_TO_RUN $ARGS";
+        $IS_DOCKER || echo env -i $BASH_ENVIRONMENT bash -c "$SCRIPT_TO_RUN $ARGS";
     fi;
 fi;
 
-$IS_DOCKER && env -i $BASH_ENVIRONMENT bash -c "$@";
+$IS_DOCKER && env -i $BASH_ENVIRONMENT bash -c "${@}";
 
 [ ! $IS_DOCKER ] && [ -z "$SCRIPT_TO_RUN" ] && echo "Dumping you to /bin/bash" && env -i $BASH_ENVIRONMENT bash;

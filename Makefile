@@ -1,4 +1,4 @@
-.PHONY: build
+.PHONY: build test-all
 
 build:
 	@-sh Meta/Build.sh;
@@ -26,7 +26,9 @@ prepare: clean docker-down
 rebuild:
 	@-sh Meta/Rebuild.sh;
 
-test:
+test-local:
 	@-sh Meta/Runtest.sh all
 
 test-with-docker: docker-up
+
+test-all: test-local test-with-docker

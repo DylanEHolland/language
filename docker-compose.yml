@@ -4,10 +4,10 @@ services:
     build:
       context: .
       dockerfile: Meta/Docker/Dockerfile
-    command: ["/bin/bash", "Meta/Runtest.sh"]
+    command: ["Meta/Runtest.sh"]
     volumes:
-      - build_dir:/src/liz/Build
       - ./:/src/liz
+      - build_dir:/src/liz/Build
     environment:
       LIZ_CONTAINER: 1
 

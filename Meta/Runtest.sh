@@ -3,7 +3,7 @@
 . Meta/Common.sh;
 
 echo "[Meta/Build.sh]";
-sh Meta/Build.sh &> /dev/null || exit 1;
+sh Meta/Build.sh;# &> /dev/null || exit 1;
 echo "Done.\n=\n\n"
 
 
