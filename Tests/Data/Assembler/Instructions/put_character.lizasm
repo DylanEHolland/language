@@ -8,4 +8,4 @@ put_character 'w';
 put_character 'o';
 put_character 'r';
 put_character 'l';
-put_character 'd';   
+put_character 'd';

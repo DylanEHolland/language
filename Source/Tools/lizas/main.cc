@@ -1,6 +1,10 @@
 #include <iostream>
 #include <Common/Include/input.h>
 #include <Tools/Assembly/Include/parser.h>
+#include <Tools/Assembly/Include/backend.h>
+
+using namespace liz::tools::assembly;
+using namespace liz::common;
 
 int main(int argc, char **argv) {
     if(argc < 2) {
@@ -9,8 +13,10 @@ int main(int argc, char **argv) {
     }
 
     for(int i = 1; i < argc; i++) {
-        std::string buffer = liz::common::readFile(argv[i]);
-        liz::tools::assembly::parseAssemblyCode(buffer);
+        std::string buffer = readFile(argv[i]);
+        auto tokens = parseAssemblyCode(buffer);
+        auto intermediate = createIntermediate(tokens);
+        writeIntermediate("/tmp/test.lizobj", intermediate);
     }
 
     return 0;

@@ -13,7 +13,6 @@
 #include <Tools/Assembly/Include/parser.h>
 #include <Tools/Assembly/Include/backend.h>
 
-
 #include <iostream>
 #include <string>
 #include <vector>
@@ -104,7 +103,9 @@ namespace liz::tools::assembly {
                 }
 
                 if(i > (stringBeginAt-1) && !addedStringPlaceholder) {
-                    workingLineBuffer += "{{#STR:" + std::to_string(n) + "}}";
+                    workingLineBuffer += "{{str}}"; // not sure a better token,
+                    // if someone had a string with this it would
+                    // do something weird :/
                     addedStringPlaceholder = true;
                 }
             }
@@ -126,7 +127,7 @@ namespace liz::tools::assembly {
         return lineBuffer;
     }
 
-    void parseAssemblyCode(std::string asmCode) {
+    std::vector<struct assemblyLine*> parseAssemblyCode(std::string asmCode) {
         if(asmCode[asmCode.length() - 1] != '\n') {
             asmCode += '\n';
         }
@@ -134,7 +135,7 @@ namespace liz::tools::assembly {
         asmCode = removeComments(asmCode);
         std::vector<std::string> asmCodeLines = splitIntoLines(asmCode);
         std::vector<struct assemblyLine*> tokens = tokenizeCleanAssemblyCode(asmCodeLines);
-        createIntermediate(tokens);
+        return tokens;
     }
 
     struct assemblyLine *parseLineFromAssemblyCode(std::string asmCodeLine) {

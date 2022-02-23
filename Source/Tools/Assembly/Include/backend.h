@@ -1,22 +1,22 @@
 #pragma once
 
 #include <VM/Include/opcode.h>
+#include <VM/Include/instruction.h>
 #include <Tools/Assembly/Include/parser.h>
+
 #include <vector>
 
+using namespace liz::vm;
+
 namespace liz::tools::assembly {
-    enum allowedIntermediateTypes {
-        INVALID = 0,
-        CHAR
+    struct extractOperandResult {
+        struct intermediateOperand *operand;
+        struct intermediateDataValue *data;
     };
 
-    struct asmIntermediateValue {
-        enum allowedIntermediateTypes type;
-        char char_value;
-    };
-
-    void createIntermediate(std::vector<struct assemblyLine*> instructionList);
+    struct intermediate *createIntermediate(std::vector<struct assemblyLine*> instructionList);
     enum liz::vm::opcode opcodeFromString(std::string potentialInstruction);
-    struct asmIntermediateValue *getCharacterFromOperandString(std::string operandStr, int lineNUmber);
-    struct asmIntermediateValue *extractOperand(std::string operand, int lineNumber);
+    struct intermediateDataValue *getCharacterFromOperandString(std::string operandStr, int lineNUmber);
+    struct extractOperandResult *extractOperand(std::string operand, int lineNumber);
+    void writeIntermediate(std::string fileName, struct intermediate *program);
 }

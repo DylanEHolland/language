@@ -15,8 +15,4 @@ namespace liz::vm {
         RETURN,
         SET_TYPE
     };
-
-    struct operands {
-        
-    };
 }

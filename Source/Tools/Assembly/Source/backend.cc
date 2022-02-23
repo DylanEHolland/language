@@ -1,7 +1,7 @@
-#include <Tools/Assembly/Include/parser.h>
-#include <Tools/Assembly/Include/backend.h>
 #include <VM/Include/opcode.h>
 #include <VM/Include/instruction.h>
+#include <Tools/Assembly/Include/parser.h>
+#include <Tools/Assembly/Include/backend.h>
 #include <Common/Include/output.h>
 
 #include <vector>
@@ -10,14 +10,16 @@
 using namespace liz::vm;
 
 namespace liz::tools::assembly {
-    struct asmIntermediateValue *extractOperand(std::string operandStr, int lineNumber) {
+    struct extractOperandResult *extractOperand(std::string operandStr, int lineNumber) {
         bool extracted = false;
-        struct asmIntermediateValue *extractedOp = new struct asmIntermediateValue;
-        extractedOp->type = INVALID;
-
+        struct intermediateDataValue *extractedData = new struct intermediateDataValue;
+        struct extractOperandResult *returnBuffer = new struct extractOperandResult;
+        struct intermediateOperand *operand = new struct intermediateOperand;
+        operand->type = INVALID_OPERAND_TYPE;
+        
         if(operandStr[0] == '\'') {
-            extractedOp = getCharacterFromOperandString(operandStr, lineNumber);
-            std::string charDisplay = "";
+            operand->type = DATA_OPERAND;
+            returnBuffer->data = getCharacterFromOperandString(operandStr, lineNumber);
             extracted = true;
         } else {
             /* assume it is a variable name */
@@ -28,18 +30,21 @@ namespace liz::tools::assembly {
             logError("Something went wrong", lineNumber);
         }
 
-        return extractedOp;
+        returnBuffer->operand = operand;
+
+        return returnBuffer;
     }
 
-    void createIntermediate(std::vector<struct assemblyLine*> instructionList) {
+    struct intermediate *createIntermediate(std::vector<struct assemblyLine*> instructionList) {
         int lineNumber = 1;
-        int stringCount = 0;
-        std::vector<std::string> programStrings;
+        int dataCount = 0;
+        std::vector<struct intermediateDataValue *> programData;
+        struct intermediate *result = new struct intermediate;
         
         for(auto asmLine : instructionList) {
             //dumpAssemblyLine(asmLine);
             auto foundOpcode = opcodeFromString(asmLine->instruction);
-            std::vector<struct asmIntermediateValue *> extractedOperands;
+            std::vector<struct intermediateOperand *> extractedOperands;
 
             if(foundOpcode == NO_INSTRUCTION) {
                 logError("Instruction not found when trying " + asmLine->instruction);
@@ -47,23 +52,39 @@ namespace liz::tools::assembly {
 
 
             for(auto op : asmLine->operands) {
-                struct asmIntermediateValue *operandValue = extractOperand(op, lineNumber);
-                if(operandValue->type != INVALID) {
-                    extractedOperands.push_back(operandValue);
+                struct extractOperandResult *operandValue = extractOperand(op, lineNumber);
+                if(operandValue->operand->type != INVALID_OPERAND_TYPE) {
+                    auto operand = operandValue->operand;
+                    if(operand->type == DATA_OPERAND) {
+                        programData.push_back(operandValue->data);
+                        operand->dataId = dataCount;
+                        dataCount++;
+                    }
+
+                    extractedOperands.push_back(operand);
                 }
             }
             
             for(auto str : asmLine->strings) {
-                programStrings.push_back(str);
-                stringCount += 1;
+                // TODO: make string an intermediateDataValue
+                //programData.push_back(;
+
+                dataCount++;
             }
 
+            // TODO: 
+
+            struct intermediateInstruction *finalInstruction = new struct intermediateInstruction;
+            finalInstruction->opcode = foundOpcode;
+            result->code.push_back(finalInstruction);
             lineNumber++;
         }
+
+        return result;
     }
 
-    struct asmIntermediateValue *getCharacterFromOperandString(std::string operandStr, int lineNumber) {
-        struct asmIntermediateValue *charNode = new asmIntermediateValue;
+    struct intermediateDataValue *getCharacterFromOperandString(std::string operandStr, int lineNumber) {
+        struct intermediateDataValue *charNode = new intermediateDataValue;
         bool foundOpenQuote = false;
         bool foundClosedQuote = false;
         bool breakingChar = false;
@@ -124,5 +145,14 @@ namespace liz::tools::assembly {
         }
 
         return foundOpcode;
+    }
+
+    void writeIntermediate(std::string fileName, struct intermediate *program) {
+        logOutput("writing object code...");
+        for(auto ins : program->code) {
+            //Instruction *imIns = new Instruction();
+            //imIns->fromIntermediate(ins);
+            break;
+        }
     }
 }

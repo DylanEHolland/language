@@ -17,7 +17,7 @@ namespace liz::tools::assembly {
     struct assemblyLine *parseLineFromAssemblyCode(std::string asmCodeLine);
     std::vector<struct assemblyLine*> tokenizeCleanAssemblyCode(std::vector<std::string> asmLines);
     std::vector<std::string> splitIntoLines(std::string asmCode);
-    void parseAssemblyCode(std::string asmCode);
+    std::vector<struct assemblyLine*> parseAssemblyCode(std::string asmCode);
     std::string removeComments(std::string asmCode);
     struct extractedAssemblyLine *extractStringsFromLine(std::string asmCodeLine);
     void dumpAssemblyLine(struct assemblyLine *node);
