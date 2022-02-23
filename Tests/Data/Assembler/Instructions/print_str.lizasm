@@ -1,4 +1,0 @@
-; print_str $str
-; print a string to the screen, self explanatory
-
-print_str $str

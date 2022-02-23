@@ -1,3 +1,0 @@
-namespace liz::tools::assembly {
-    
-}

@@ -9,7 +9,7 @@ namespace liz::vm {
     };
 
     struct operand {
-        
+        enum operandType type;
     };
 
     struct operands {

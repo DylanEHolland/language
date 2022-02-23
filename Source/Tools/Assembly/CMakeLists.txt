@@ -1,7 +1,7 @@
 add_library(assembly
     Include/parser.h
-    Include/intermediate.h
+    Include/backend.h
 
     Source/parser.cc
-    Source/intermediate.cc
+    Source/backend.cc
 )

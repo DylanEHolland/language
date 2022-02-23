@@ -8,4 +8,14 @@ namespace liz::vm {
     Instruction::~Instruction() {
         
     }
+
+    void Instruction::toByteCode() {
+        
+    }
+
+    class Instruction *fromByteCodeInstruction() {
+        class Instruction *buffer = new Instruction();
+
+        return buffer;
+    }
 }

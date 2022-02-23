@@ -1,0 +1,3 @@
+mov_string x, "hello world"
+
+mov_string "hey whats going, on", "hello world"

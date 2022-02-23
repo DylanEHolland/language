@@ -9,7 +9,10 @@
  * 
  */
 
+#include <VM/Include/instruction.h>
 #include <Tools/Assembly/Include/parser.h>
+#include <Tools/Assembly/Include/backend.h>
+
 
 #include <iostream>
 #include <string>
@@ -17,16 +20,19 @@
 
 
 namespace liz::tools::assembly {
-    void tokenizeCleanAssemblyCode(std::vector<std::string> asmCodeLines) {
+    std::vector<struct assemblyLine*> tokenizeCleanAssemblyCode(std::vector<std::string> asmCodeLines) {
         int n = 0;
         std::vector<std::string> instructionTokens;
         std::vector<std::string> lineTokens;
+        std::vector<struct assemblyLine*> instructionList;
 
         for(auto line : asmCodeLines) {
             auto asmLine = parseLineFromAssemblyCode(line);
-            dumpAssemblyLine(asmLine);
+            instructionList.push_back(asmLine);
             n++;
         }
+
+        return instructionList;
     }
 
     void dumpAssemblyLine(struct assemblyLine *node) {
@@ -127,7 +133,8 @@ namespace liz::tools::assembly {
 
         asmCode = removeComments(asmCode);
         std::vector<std::string> asmCodeLines = splitIntoLines(asmCode);
-        tokenizeCleanAssemblyCode(asmCodeLines);
+        std::vector<struct assemblyLine*> tokens = tokenizeCleanAssemblyCode(asmCodeLines);
+        createIntermediate(tokens);
     }
 
     struct assemblyLine *parseLineFromAssemblyCode(std::string asmCodeLine) {
