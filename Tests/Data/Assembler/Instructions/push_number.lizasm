@@ -1,2 +1,0 @@
-; create a mutable variable x
-push_number 20

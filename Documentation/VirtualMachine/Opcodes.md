@@ -2,13 +2,19 @@
 
 *   `add` **[$1: number, $2: number]** - Add two numbers and push them to the stack
 
-*   `imut` **[$1: varname, $2: value (of type $1)]** - Create an immutable variable (const) with the name provided
+*   `allocate` **[$mem_size: number]** - Allocate `$mem_size` bytes of memory from the heap
 
-*   `mut` **[$1: varname]** - Create a variable with the name provided, e.g. `mut x`
+*   `free` **[$addr: liz_address]** - Unallocate memory blocks attached to `$liz_address`
 
-*   `print_int` **[$1: number]** - Print an integer to stdout
+*   `imut` **[$name: varname, $2: value (of type $1)]** - Create an immutable variable (const) with the name provided
 
-*   `push_number` **[$1: number]** - Push a number to the stack 
+*   `mov_number` **[$dest: [liz_address|register], $source: number]** - Move a value of type `number` into the `$dest` address space, e.g. `mov_number x 10`
 
-*   `set_type` **[$1: varname, $2: type]** - Set type of variable
+*   `mut` **[$name: varname]** - Create a variable with the name provided, e.g. `mut x`
+
+*   `put_character` **[$char_to_print: char]** - Put a single character to stdout
+
+*   `return` - Pop `stack_top` and return its value
+
+*   `set_type` **[$name: varname, $var_type: type]** - Set type of variable
 
