@@ -7,10 +7,14 @@ add_library(vm
     Include/operand.h
     Include/registers.h
     Include/types.h
+    Include/machine.h
 
     Source/instruction.cc
     Source/opcode.cc
     Source/operand.cc
     Source/registers.cc
     Source/types.cc
+    Source/machine.cc
 )
+
+target_link_libraries(vm memory common)
