@@ -16,7 +16,7 @@ int main(int argc, char **argv) {
         std::string buffer = readFile(argv[i]);
         auto tokens = parseAssemblyCode(buffer);
         auto intermediate = createIntermediate(tokens);
-        writeIntermediate("/tmp/test.lizobj", intermediate);
+        //writeIntermediate("/tmp/test.lizobj", intermediate);
     }
 
     return 0;
