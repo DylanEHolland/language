@@ -17,12 +17,17 @@ namespace liz::vm {
                 this->startAddress = block.head;
                 this->endAddress = block.tail;
                 this->isInitialized = true;
-            } 
+            } else {
+                this->endAddress->next = block.head;
+                this->endAddress = block.tail;
+            }
         }
     }
 
     struct generateMemoryBlockResponse lizMemory::generateMemoryBlock() {
         struct generateMemoryBlockResponse response;
+        struct lizWord *previous;
+        struct lizWord *cell;
         unsigned char *mp = (unsigned char *)mmap(
             0, 
             this->memBlockSize,
@@ -31,34 +36,42 @@ namespace liz::vm {
             -1, 
             0
         );
-        mlock(mp, this->memBlockSize);
         
         if(mp == MAP_FAILED) {
             std::cout << "generateMemoryBlock: failure on block" << this->blocksAllocated << std::endl;
             std::exit(-1);
         }
-        struct lizWord *previous;
-        struct lizWord *cell;
+
+        mlock(mp, this->memBlockSize);
         for(int i = 0; i < this->memBlockSize / sizeof(struct lizWord); i++) {
             cell = (struct lizWord *)mp;
-            cell->next = previous;
             if(i == 0) response.head = cell;
+            else previous->next = cell;
             mp += 16;
-
             previous = cell;
         }
         
-        response.tail = cell;
         this->blocksAllocated++;
+        response.tail = cell;
+        
         return response;
     }
 
+    struct generateMemoryBlockResponse lizMemory::getMemSlabOSAddrs() {
+        struct generateMemoryBlockResponse buffer;
+
+        buffer.head = this->startAddress;
+        buffer.tail = this->endAddress;
+
+        return buffer;
+    }
+
+
     void lizMemory::initializeMemory() {
-        this->expandMemory(2);
+        this->expandMemory(500);
     }
 
     lizMemory::lizMemory() {
-        std::cout << "Starting virtual memory system..." << std::endl;    
         this->initializeMemory();
     }
 

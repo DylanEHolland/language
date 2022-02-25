@@ -25,20 +25,26 @@ namespace liz::vm {
     };
 
     class lizMemory {
+        #ifdef LIZ_TESTING
+        public:
+        #endif
         bool isInitialized = false;
         void expandMemory(int blocks = 1);
         struct generateMemoryBlockResponse generateMemoryBlock();
         void initializeMemory();
-        struct lizWord *startAddress;
-        struct lizWord *endAddress;
         int64_t memBlockSize = (1024 * 12);
         int64_t memSize = (4096 * 12); // initial memory allocation
-        int64_t maxMemSize = (1024 * 1024);
+        int64_t maxMemSize = (1024 * 1024); // 1mb
         int32_t blocksAllocated = 0;
+        struct lizWord *startAddress;
+        struct lizWord *endAddress;
 
+        #ifndef LIZ_TESTING
         public:
+        #endif
             lizMemory();
             ~lizMemory();
+            struct generateMemoryBlockResponse getMemSlabOSAddrs();
     };
 }
 
