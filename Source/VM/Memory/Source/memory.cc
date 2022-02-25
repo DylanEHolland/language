@@ -8,104 +8,61 @@
 #include <sys/mman.h>
 #include <string.h>
 
-// #include <sys/stat.h>
-// #include <fcntl.h>
-
-// #include <stdlib.h>
-// #include <sys/ioctl.h>
-// #include <stdio.h>
-
-// #include <unistd.h>
-
 namespace liz::vm {
-    bool lizMemory::initializeMemory() {
-        bool allocatedMemory = false;
-        
+    void lizMemory::expandMemory(int blocks) {
+        for(int i = 0; i < blocks; i++) {
+            auto block = this->generateMemoryBlock();
 
-        //mlock(mp, n_bytes);
-        size_t nPages = (this->memSize / sizeof(struct lizPage));
-        
-        for(int i = 0; i < nPages; i++) {
-            this->createPage();
-            break;
-            //std::cout << "Allocating page #" << (i+1) << std::endl;
+            if(!this->isInitialized) {
+                this->startAddress = block.head;
+                this->endAddress = block.tail;
+                this->isInitialized = true;
+            } 
         }
-
-        return allocatedMemory;
     }
 
-    lizMemory::lizMemory() {
-        std::cout << "Starting virtual memory system..." << std::endl;    
-        if(!this->initializeMemory()) {
-            logError("Memory error, aborting.");
-            std::exit(-1);
-        }
-    }   
-
-    lizMemory::~lizMemory() {
-
-    }
-
-    struct lizPage *lizMemory::createPage() {
-        size_t numWordBytes = sizeof(struct lizWord);
-        size_t numWords = (4096 / numWordBytes);
-        
+    struct generateMemoryBlockResponse lizMemory::generateMemoryBlock() {
+        struct generateMemoryBlockResponse response;
         unsigned char *mp = (unsigned char *)mmap(
             0, 
-            4096,
-            PROT_READ|PROT_WRITE, 
+            this->memBlockSize,
+            PROT_READ | PROT_WRITE, 
             MAP_ANONYMOUS | MAP_PRIVATE, 
             -1, 
             0
         );
-
+        mlock(mp, this->memBlockSize);
+        
         if(mp == MAP_FAILED) {
-            std::cout << "Initial allocation Failed" << std::endl;
+            std::cout << "generateMemoryBlock: failure on block" << this->blocksAllocated << std::endl;
             std::exit(-1);
         }
+        struct lizWord *previous;
+        struct lizWord *cell;
+        for(int i = 0; i < this->memBlockSize / sizeof(struct lizWord); i++) {
+            cell = (struct lizWord *)mp;
+            cell->next = previous;
+            if(i == 0) response.head = cell;
+            mp += 16;
 
-        struct lizPage *page = (struct lizPage *)mp;
-        mp += sizeof(struct lizPage *);
-
-        for(int i = 0; i < numWords; i++) {
-           unsigned char *wp = (unsigned char *)mmap(
-                mp,
-                sizeof(struct lizWord),
-                PROT_READ|PROT_WRITE,
-                MAP_ANONYMOUS | MAP_PRIVATE,
-                -1, 
-                0
-            );
-
-            if(wp == MAP_FAILED) {
-                std::cout << "Word struct allocation Failed" << std::endl;
-                std::exit(-1);
-            }
-
-            struct lizWord *word = (struct lizWord *)wp;
-            mp += 8;
-
-           unsigned char *bp = (unsigned char *)mmap(
-                mp,
-                16,
-                PROT_READ|PROT_WRITE,
-                MAP_ANONYMOUS | MAP_PRIVATE,
-                -1, 
-                0
-            );
-
-            if(bp == MAP_FAILED) {
-                std::cout << "Allocation of word bytes failed" << std::endl;
-                std::exit(-1);
-            }
-
-            word->bytes = bp;
-            for(int b = 0; b < numWordBytes; b++)
-                word->bytes[0] = '\0';
-
-            mp += 8;
+            previous = cell;
         }
+        
+        response.tail = cell;
+        this->blocksAllocated++;
+        return response;
+    }
 
-        return page;
+    void lizMemory::initializeMemory() {
+        this->expandMemory(2);
+    }
+
+    lizMemory::lizMemory() {
+        std::cout << "Starting virtual memory system..." << std::endl;    
+        this->initializeMemory();
+    }
+
+    lizMemory::~lizMemory() {
+
     }
 }

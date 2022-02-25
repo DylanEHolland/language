@@ -14,25 +14,27 @@ namespace liz::vm {
 
     #pragma pack(push, 1)
         struct lizWord {
-            unsigned char *bytes;
+            unsigned char bytes[16];
+            struct lizWord *next;
         };
     #pragma pack(pop)
 
-
-    #pragma pack(push, 1)
-        struct lizPage {
-            /* Subtract one byte for the next pointer */
-            
-            struct lizWord *words;
-            struct lizPage *next;
-        };
-    #pragma pack(pop)
+    struct generateMemoryBlockResponse {
+        struct lizWord *head;
+        struct lizWord *tail;
+    };
 
     class lizMemory {
-        struct lizPage * createPage();
-        bool initializeMemory();
+        bool isInitialized = false;
+        void expandMemory(int blocks = 1);
+        struct generateMemoryBlockResponse generateMemoryBlock();
+        void initializeMemory();
         struct lizWord *startAddress;
-        int64_t memSize = (4096 * 1024); // 4 megabytes
+        struct lizWord *endAddress;
+        int64_t memBlockSize = (1024 * 12);
+        int64_t memSize = (4096 * 12); // initial memory allocation
+        int64_t maxMemSize = (1024 * 1024);
+        int32_t blocksAllocated = 0;
 
         public:
             lizMemory();
