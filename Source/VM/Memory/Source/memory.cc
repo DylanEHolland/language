@@ -8,7 +8,21 @@
 #include <sys/mman.h>
 #include <string.h>
 
+using namespace std;
+
 namespace liz::vm {
+    void *lizMemory::allocate(size_t bytes) {
+        unsigned char *test;
+        cout << "Allocating " << bytes << endl;
+        return (void *)(size_t)test;
+    }
+
+    void *lizMemory::byVirtualAddress(int64_t addr) {
+        if(addr < 0) return nullptr;
+        
+        return nullptr;
+    }
+
     void lizMemory::expandMemory(int blocks) {
         for(int i = 0; i < blocks; i++) {
             auto block = this->generateMemoryBlock();
@@ -38,7 +52,8 @@ namespace liz::vm {
         );
         
         if(mp == MAP_FAILED) {
-            std::cout << "generateMemoryBlock: failure on block" << this->blocksAllocated << std::endl;
+            std::cout << "generateMemoryBlock: failure on block" \
+                << this->blocksAllocated << std::endl;
             std::exit(-1);
         }
 
@@ -50,7 +65,7 @@ namespace liz::vm {
             mp += 16;
             previous = cell;
         }
-        
+
         this->blocksAllocated++;
         response.tail = cell;
         
@@ -66,9 +81,16 @@ namespace liz::vm {
         return buffer;
     }
 
-
     void lizMemory::initializeMemory() {
-        this->expandMemory(500);
+        //this->expandMemory(500);
+        // unsigned char *mp = (unsigned char *)mmap(
+        //     0, 
+        //     1024*10,
+        //     PROT_READ | PROT_WRITE, 
+        //     MAP_ANONYMOUS | MAP_PRIVATE, 
+        //     -1, 
+        //     0
+        // );
     }
 
     lizMemory::lizMemory() {
@@ -78,4 +100,5 @@ namespace liz::vm {
     lizMemory::~lizMemory() {
 
     }
+
 }

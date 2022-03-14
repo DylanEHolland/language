@@ -5,10 +5,15 @@
 namespace liz::vm {
     Machine::Machine() {
         this->memory = new class lizMemory();
+        this->boot();
     }
 
     Machine::~Machine() {
 
+    }
+
+    void Machine::boot() {
+        
     }
 
     void Machine::run(struct intermediate *blob) {

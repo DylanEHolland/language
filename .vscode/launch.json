@@ -1,15 +1,46 @@
 {
     "version": "0.2.0",
     "configurations": [
+
+        // {
+        //     "args": ["Tests/Data/Assembler/instructions/*"],
+        //     "cwd": "${workspaceFolder}",
+        //     "isShellCommand": true,
+        //     "name": "Testing the LizVM Assembler",
+        //     "preLaunchTask": "Run CMake and Build",
+        //     "request": "launch",
+        //     "program": "Build/bin/lizas",
+        //     "type": "lldb",
+        // },
         {
-            "args": ["${file}"],
+            "args": [], //["${file}"],
             "cwd": "${workspaceFolder}",
             "isShellCommand": true,
-            "name": "Testing the Liz Assembler",
+            "name": "Testing LizVM Memory Address",
             "preLaunchTask": "Run CMake and Build",
             "request": "launch",
-            "program": "Build/bin/lizas",
+            "program": "Build/Tests/VM/Memory/test_address",
             "type": "lldb",
-        }
+        },
+        {
+            "args": [], //["${file}"],
+            "cwd": "${workspaceFolder}",
+            "isShellCommand": true,
+            "name": "Testing LizVM Memory",
+            "preLaunchTask": "Run CMake and Build",
+            "request": "launch",
+            "program": "Build/Tests/VM/Memory/test_memory",
+            "type": "lldb",
+        },
+        // {
+        //     "args": [], //["${file}"],
+        //     "cwd": "${workspaceFolder}",
+        //     "isShellCommand": true,
+        //     "name": "Testing LizVM Registers",
+        //     "preLaunchTask": "Run CMake and Build",
+        //     "request": "launch",
+        //     "program": "Build/Tests/VM/test_registers",
+        //     "type": "lldb",
+        // }
     ]
 }

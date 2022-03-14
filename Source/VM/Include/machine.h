@@ -13,6 +13,7 @@ namespace liz::vm {
             void run(struct intermediate *blob);
         private:
             class lizMemory *memory;
+            void boot();
 
     };
 }

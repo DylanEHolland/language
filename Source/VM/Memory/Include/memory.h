@@ -3,8 +3,6 @@
 #define MEMORY_H
 
 #include <VM/Include/config.h>
-#include <VM/Include/types.h>
-#include <VM/DataTypes/Include/number.h>
 #include <VM/Include/machine.h>
 
 #define WORD_BYTES (LIZ_WORD_SIZE / 8)
@@ -29,6 +27,7 @@ namespace liz::vm {
         public:
         #endif
         bool isInitialized = false;
+        void *byVirtualAddress(int64_t addr);
         void expandMemory(int blocks = 1);
         struct generateMemoryBlockResponse generateMemoryBlock();
         void initializeMemory();
@@ -45,7 +44,9 @@ namespace liz::vm {
             lizMemory();
             ~lizMemory();
             struct generateMemoryBlockResponse getMemSlabOSAddrs();
+            void *allocate(size_t bytes);
     };
+
 }
 
 #endif
