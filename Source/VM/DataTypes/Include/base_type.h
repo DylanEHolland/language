@@ -14,6 +14,11 @@
 using namespace std;
 
 namespace liz::vm::dataTypes {
+    /**
+     * The base type is similar to python and
+     * lisp combined.  The base type is like the
+     * atom, but everything is a pointer.
+     */
     class baseType {
         public:
             baseType();
