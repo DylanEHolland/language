@@ -1,5 +1,8 @@
 #include <VM/DataTypes/Include/number.h>
 #include <iostream>
+#include <string>
+
+using namespace std;
 
 namespace liz::vm::dataTypes {
     number::number(float x) {
@@ -14,7 +17,7 @@ namespace liz::vm::dataTypes {
         this->value = x;
     }
 
-    char *number::str() {
+    string number::str() {
         char *buffer = (char *)"this is a test";
         return buffer;
     }
