@@ -1,0 +1,28 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "args": ["-rf", "Build/bin"],
+        "command": "rm",
+        "group": "build",
+        "label": "Clear executable cache",
+        "type": "shell",
+        "presentation": {
+          "reveal": "silent"
+        }
+      },
+      {
+        "command": "Meta/Build.sh",
+        "dependsOn": "Clear executable cache",
+        "group": "build",
+        "label": "Run CMake and Build",
+        "presentation": {
+          "reveal": "silent"
+        },
+        "problemMatcher": {
+          "base": "$gcc"
+        },
+        "type": "shell",
+      }
+    ]
+}

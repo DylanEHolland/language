@@ -1,0 +1,3 @@
+; allocate some memory and then free it
+
+allocate 1

@@ -1,0 +1,8 @@
+; we need comments
+; x = 1 + 2
+; print(x)
+
+mut x
+settype x number ; ensure comments 
+add x 1 2 ; work this way as well
+print_int $x

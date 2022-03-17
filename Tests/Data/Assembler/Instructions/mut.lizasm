@@ -1,0 +1,2 @@
+; create a mutable variable x
+mut x ; variables have no value or type by default
