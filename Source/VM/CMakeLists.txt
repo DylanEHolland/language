@@ -13,7 +13,6 @@ add_library(vm
     Source/opcode.cc
     Source/operand.cc
     Source/registers.cc
-    Source/types.cc
     Source/machine.cc
 )
 

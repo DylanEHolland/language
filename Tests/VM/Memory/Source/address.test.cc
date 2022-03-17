@@ -24,8 +24,6 @@ void testFetchingAddress() {
         auto addr = new lizAddr(mem, i);
         addr->next(512);
     }
-
-    
 }
 
 int main(void) {
