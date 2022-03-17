@@ -17,4 +17,4 @@ add_library(vm
     Source/machine.cc
 )
 
-target_link_libraries(vm memory common)
+target_link_libraries(vm data_types memory common)

@@ -5,5 +5,6 @@ namespace liz::vm::dataTypes {
         public:
             baseType();
         private:
+            int id;
     };
 }

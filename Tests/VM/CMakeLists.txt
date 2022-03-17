@@ -1,4 +1,5 @@
 add_subdirectory(Memory)
+add_subdirectory(DataTypes)
 
 add_executable(test_opcodes
     Source/opcodes.test.cc

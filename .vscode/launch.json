@@ -1,17 +1,26 @@
 {
     "version": "0.2.0",
     "configurations": [
-
-        // {
-        //     "args": ["Tests/Data/Assembler/instructions/*"],
-        //     "cwd": "${workspaceFolder}",
-        //     "isShellCommand": true,
-        //     "name": "Testing the LizVM Assembler",
-        //     "preLaunchTask": "Run CMake and Build",
-        //     "request": "launch",
-        //     "program": "Build/bin/lizas",
-        //     "type": "lldb",
-        // },
+        {
+            "args": [""],
+            "cwd": "${workspaceFolder}",
+            "isShellCommand": true,
+            "name": "Number Type",
+            "preLaunchTask": "Run CMake and Build",
+            "request": "launch",
+            "program": "Build/Tests/VM/DataTypes/test_number",
+            "type": "lldb",
+        },
+        {
+            "args": ["Tests/Data/Assembler/instructions/*"],
+            "cwd": "${workspaceFolder}",
+            "isShellCommand": true,
+            "name": "Testing the LizVM Assembler",
+            "preLaunchTask": "Run CMake and Build",
+            "request": "launch",
+            "program": "Build/bin/lizas",
+            "type": "lldb",
+        },
         {
             "args": [], //["${file}"],
             "cwd": "${workspaceFolder}",
@@ -32,15 +41,15 @@
             "program": "Build/Tests/VM/Memory/test_memory",
             "type": "lldb",
         },
-        // {
-        //     "args": [], //["${file}"],
-        //     "cwd": "${workspaceFolder}",
-        //     "isShellCommand": true,
-        //     "name": "Testing LizVM Registers",
-        //     "preLaunchTask": "Run CMake and Build",
-        //     "request": "launch",
-        //     "program": "Build/Tests/VM/test_registers",
-        //     "type": "lldb",
-        // }
+        {
+            "args": [], //["${file}"],
+            "cwd": "${workspaceFolder}",
+            "isShellCommand": true,
+            "name": "Testing LizVM Registers",
+            "preLaunchTask": "Run CMake and Build",
+            "request": "launch",
+            "program": "Build/Tests/VM/test_registers",
+            "type": "lldb",
+        }
     ]
 }
