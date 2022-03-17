@@ -1,5 +1,5 @@
-add_executable(test_base_type
-    base_type.test.cc
+add_executable(test_atom
+    atom.test.cc
 )
 
 add_executable(test_number

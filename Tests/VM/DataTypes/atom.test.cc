@@ -8,21 +8,21 @@
  * @copyright Copyright (c) 2022
  * 
  */
-#include <VM/DataTypes/Include/base_type.h>
+#include <VM/DataTypes/Include/atom.h>
 #include <iostream>
 
 using namespace liz::vm::dataTypes;
 using namespace std;
 
-void testBaseTypeStr() {
+void testAtomStr() {
     for(int i = 0; i < 1; i++) {
-        auto n = new baseType();
+        auto n = new atom();
         cout << n->str() << endl;
     }
 }
 
 int main(void) {
-    testBaseTypeStr();
+    testAtomStr();
 
     return 0;
 }
