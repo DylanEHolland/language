@@ -18,6 +18,7 @@
 #include <iostream>
 
 using namespace liz::vm;
+using namespace std;
 
 namespace liz::tools::assembly {
     struct extractOperandResult *extractOperand(std::string operandStr, int lineNumber) {
@@ -146,12 +147,15 @@ namespace liz::tools::assembly {
     }
 
     enum liz::vm::opcode opcodeFromString(std::string potentialInstruction) {
-        enum liz::vm::opcode foundOpcode = NO_INSTRUCTION;        
-        
-        if(potentialInstruction == "mov_string") {
+        enum liz::vm::opcode foundOpcode = NO_INSTRUCTION;
+        if(potentialInstruction == "imut") {
+            foundOpcode = IMUT;
+        } else if(potentialInstruction == "mov_string") {
             foundOpcode = MOV_STRING;
         } else if(potentialInstruction == "put_character") {
             foundOpcode = PUT_CHARACTER;
+        } else if(potentialInstruction == "set_type") {
+            foundOpcode = SET_TYPE;
         }
 
         return foundOpcode;
