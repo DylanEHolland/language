@@ -39,9 +39,23 @@ namespace liz::vm {
     void Machine::run(struct intermediate *blob) {
         for(auto op : blob->code) {
             switch(op->opcode) {
+                case NO_INSTRUCTION:
+                break;
+
+                case ADD:
+                case ALLOCATE:
+                case FREE:
+                break;
                 case IMUT:
                     cout << "imut" << endl;
                     this->handleOperands(op->operands);
+                break;
+                case MOV_NUMBER:
+                case MOV_STRING:
+                case MUT:
+                case PUT_CHARACTER:
+                case RETURN:
+                case SET_TYPE:
                 break;
             }
         }

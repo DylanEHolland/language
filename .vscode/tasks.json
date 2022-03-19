@@ -2,10 +2,10 @@
     "version": "2.0.0",
     "tasks": [
       {
-        "args": ["-rf", "Build/bin"],
+        "args": ["-rf", "Build"],
         "command": "rm",
         "group": "build",
-        "label": "Clear executable cache",
+        "label": "clearExecutablePath",
         "type": "shell",
         "presentation": {
           "reveal": "silent"
@@ -13,9 +13,9 @@
       },
       {
         "command": "Meta/Build.sh",
-        "dependsOn": "Clear executable cache",
+        "dependsOn": "clearExecutablePath",
         "group": "build",
-        "label": "Run CMake and Build",
+        "label": "runBuild",
         "presentation": {
           "reveal": "silent"
         },
@@ -23,6 +23,11 @@
           "base": "$gcc"
         },
         "type": "shell",
+      },
+      {
+        "command": "Meta/Setup-Test-Environment.sh",
+        "dependsOn": "runBuild",
+        "label": "enterTestEnvironment"
       }
     ]
 }
