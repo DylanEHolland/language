@@ -1,3 +1,0 @@
-add_executable(test_parse_instructions Source/parse_instructions.test.cc)
-
-link_libraries(test_parse_instructions common vm assembly)

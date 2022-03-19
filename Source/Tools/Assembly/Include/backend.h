@@ -26,7 +26,9 @@ namespace liz::tools::assembly {
 
     struct intermediate *createIntermediate(std::vector<struct assemblyLine*> instructionList);
     enum liz::vm::opcode opcodeFromString(std::string potentialInstruction);
-    struct intermediateDataValue *getCharacterFromOperandString(std::string operandStr, int lineNUmber);
+    struct intermediateDataValue *getCharacterFromOperandString(std::string operandStr, int lineNumber);
+    struct intermediateDataValue *getNameOrRegisterOperand(std::string operandStr, int lineNUmber);
     struct extractOperandResult *extractOperand(std::string operand, int lineNumber);
     void writeIntermediate(std::string fileName, struct intermediate *program);
+
 }

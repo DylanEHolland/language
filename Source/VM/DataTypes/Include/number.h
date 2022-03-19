@@ -10,13 +10,13 @@
  */
 
 #pragma once
-#include <VM/DataTypes/Include/base_type.h>
+#include <VM/DataTypes/Include/atom.h>
 #include <string>
 
 using namespace std;
 
 namespace liz::vm::dataTypes {
-    class number : public baseType {
+    class number : public atom {
         public:
             number(float x);
             number(int x);

@@ -1,3 +1,6 @@
-; create a mutable variable x
+; create an imutable variable x
 imut x
-set_type x, number
+set_type x, nil
+
+; mut x
+; set_type y, nil

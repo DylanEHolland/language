@@ -19,9 +19,9 @@ namespace liz::vm::dataTypes {
      * lisp combined.  The base type is like the
      * atom, but everything is a pointer.
      */
-    class baseType {
+    class atom {
         public:
-            baseType();
+            atom();
             string str();
         private:
             int id;

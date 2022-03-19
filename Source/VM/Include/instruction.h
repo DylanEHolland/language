@@ -32,7 +32,8 @@ namespace liz::vm {
 
         DATA_OPERAND,
         REGISTER_OPERAND,
-        NAME_OPERAND
+        NAME_OPERAND, 
+        TYPE_OPERAND
     };
 
     struct intermediateOperand { 

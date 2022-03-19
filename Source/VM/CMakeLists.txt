@@ -6,14 +6,12 @@ add_library(vm
     Include/opcode.h
     Include/operand.h
     Include/registers.h
-    Include/types.h
     Include/machine.h
 
     Source/instruction.cc
     Source/opcode.cc
     Source/operand.cc
     Source/registers.cc
-    Source/types.cc
     Source/machine.cc
 )
 

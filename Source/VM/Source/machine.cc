@@ -12,6 +12,10 @@
 #include <VM/Include/machine.h>
 #include <VM/Include/instruction.h>
 
+#include <iostream>
+
+using namespace std;
+
 namespace liz::vm {
     Machine::Machine() {
         this->memory = new class lizMemory();
@@ -26,7 +30,34 @@ namespace liz::vm {
         
     }
 
-    void Machine::run(struct intermediate *blob) {
+    void Machine::handleOperands(vector<struct intermediateOperand *> operands) {
+        for(auto op : operands) {
+            cout << "Found operand" << endl;
+        }
+    }
 
+    void Machine::run(struct intermediate *blob) {
+        for(auto op : blob->code) {
+            switch(op->opcode) {
+                case NO_INSTRUCTION:
+                break;
+
+                case ADD:
+                case ALLOCATE:
+                case FREE:
+                break;
+                case IMUT:
+                    cout << "imut" << endl;
+                    this->handleOperands(op->operands);
+                break;
+                case MOV_NUMBER:
+                case MOV_STRING:
+                case MUT:
+                case PUT_CHARACTER:
+                case RETURN:
+                case SET_TYPE:
+                break;
+            }
+        }
     }
 }

@@ -14,6 +14,9 @@
 
 #include <VM/Memory/Include/memory.h>
 #include <VM/Include/instruction.h>
+#include <vector>
+
+using namespace std;
 
 namespace liz::vm {
     class Machine {
@@ -24,6 +27,7 @@ namespace liz::vm {
         private:
             class lizMemory *memory;
             void boot();
+            void handleOperands(vector<struct intermediateOperand *> operands);
 
     };
 }

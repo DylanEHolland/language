@@ -1,3 +1,5 @@
+// Launch.json
+// Not sure a better way to organize than just have a ton of test rows
 {
     "version": "0.2.0",
     "configurations": [
@@ -5,61 +7,12 @@
             "args": [""],
             "cwd": "${workspaceFolder}",
             "isShellCommand": true,
-            "name": "Base Type",
-            "preLaunchTask": "Run CMake and Build",
+            "name": "Source/initial_vm.test.cc",
+            "preLaunchTask": "runBuild",
+            "program": "${workspaceFolder}/Build/Tests/test_initial_vm",
             "request": "launch",
-            "program": "Build/Tests/VM/DataTypes/test_base_type",
-            "type": "lldb",
-        },
-        {
-            "args": [""],
-            "cwd": "${workspaceFolder}",
-            "isShellCommand": true,
-            "name": "Number Type",
-            "preLaunchTask": "Run CMake and Build",
-            "request": "launch",
-            "program": "Build/Tests/VM/DataTypes/test_number",
-            "type": "lldb",
-        },
-        {
-            "args": ["Tests/Data/Assembler/instructions/*"],
-            "cwd": "${workspaceFolder}",
-            "isShellCommand": true,
-            "name": "Testing the LizVM Assembler",
-            "preLaunchTask": "Run CMake and Build",
-            "request": "launch",
-            "program": "Build/bin/lizas",
-            "type": "lldb",
-        },
-        {
-            "args": [], //["${file}"],
-            "cwd": "${workspaceFolder}",
-            "isShellCommand": true,
-            "name": "Testing LizVM Memory Address",
-            "preLaunchTask": "Run CMake and Build",
-            "request": "launch",
-            "program": "Build/Tests/VM/Memory/test_address",
-            "type": "lldb",
-        },
-        {
-            "args": [], //["${file}"],
-            "cwd": "${workspaceFolder}",
-            "isShellCommand": true,
-            "name": "Testing LizVM Memory",
-            "preLaunchTask": "Run CMake and Build",
-            "request": "launch",
-            "program": "Build/Tests/VM/Memory/test_memory",
-            "type": "lldb",
-        },
-        {
-            "args": [], //["${file}"],
-            "cwd": "${workspaceFolder}",
-            "isShellCommand": true,
-            "name": "Testing LizVM Registers",
-            "preLaunchTask": "Run CMake and Build",
-            "request": "launch",
-            "program": "Build/Tests/VM/test_registers",
             "type": "lldb",
         }
     ]
 }
+

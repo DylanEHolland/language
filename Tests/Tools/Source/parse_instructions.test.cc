@@ -10,8 +10,16 @@
  */
 #include <Tools/Assembly/Include/parser.h>
 
+int testImut() {
+    int result = 0;
+
+    return result;
+}
+
 int main(void) {
     int status = 0;
     
+    status += testImut();
+
     return status;
 }

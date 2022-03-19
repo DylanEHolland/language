@@ -9,7 +9,8 @@
  * 
  */
 
-#include <VM/DataTypes/Include/base_type.h>
+#include <VM/DataTypes/Include/atom.h>
+#include <Common/Include/output.h>
 #include <iostream>
 #include <string>
 
@@ -18,12 +19,12 @@ using namespace std;
 namespace liz::vm::dataTypes {
     static int head = 0;
 
-    baseType::baseType() {
+    atom::atom() {
         this->id = head;
         head++;
     }
 
-    string baseType::str() {
-        return to_string(this->id);
+    string atom::str() {
+        return to_string(this->id) + "@<" + addrToStr(this->data) + ">";
     }
 }

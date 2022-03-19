@@ -18,6 +18,7 @@
 #include <iostream>
 
 using namespace liz::vm;
+using namespace std;
 
 namespace liz::tools::assembly {
     struct extractOperandResult *extractOperand(std::string operandStr, int lineNumber) {
@@ -33,6 +34,7 @@ namespace liz::tools::assembly {
             extracted = true;
         } else {
             /* assume it is a variable name */
+            returnBuffer->data = getNameOrRegisterOperand(operandStr, lineNumber);
             extracted = true;
         }
 
@@ -41,7 +43,6 @@ namespace liz::tools::assembly {
         }
 
         returnBuffer->operand = operand;
-
         return returnBuffer;
     }
 
@@ -145,13 +146,22 @@ namespace liz::tools::assembly {
         return charNode;
     }
 
+    struct intermediateDataValue *getNameOrRegisterOperand(std::string operandStr, int lineNUmber) {
+        struct intermediateDataValue *opNode = new intermediateDataValue;
+        cout << operandStr << endl;
+        return opNode;
+    }
+
     enum liz::vm::opcode opcodeFromString(std::string potentialInstruction) {
-        enum liz::vm::opcode foundOpcode = NO_INSTRUCTION;        
-        
-        if(potentialInstruction == "mov_string") {
+        enum liz::vm::opcode foundOpcode = NO_INSTRUCTION;
+        if(potentialInstruction == "imut") {
+            foundOpcode = IMUT;
+        } else if(potentialInstruction == "mov_string") {
             foundOpcode = MOV_STRING;
         } else if(potentialInstruction == "put_character") {
             foundOpcode = PUT_CHARACTER;
+        } else if(potentialInstruction == "set_type") {
+            foundOpcode = SET_TYPE;
         }
 
         return foundOpcode;
