@@ -34,6 +34,7 @@ namespace liz::tools::assembly {
             extracted = true;
         } else {
             /* assume it is a variable name */
+            returnBuffer->data = getNameOrRegisterOperand(operandStr, lineNumber);
             extracted = true;
         }
 
@@ -42,7 +43,6 @@ namespace liz::tools::assembly {
         }
 
         returnBuffer->operand = operand;
-
         return returnBuffer;
     }
 
@@ -144,6 +144,12 @@ namespace liz::tools::assembly {
         charNode->char_value = characterFound;
 
         return charNode;
+    }
+
+    struct intermediateDataValue *getNameOrRegisterOperand(std::string operandStr, int lineNUmber) {
+        struct intermediateDataValue *opNode = new intermediateDataValue;
+        cout << operandStr << endl;
+        return opNode;
     }
 
     enum liz::vm::opcode opcodeFromString(std::string potentialInstruction) {
