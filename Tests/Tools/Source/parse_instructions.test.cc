@@ -7,6 +7,8 @@
  * 
  * @copyright Copyright (c) 2022
  * 
+ * Exhaustive test of all instructions
+ * 
  */
 #include <Tools/Assembly/Include/parser.h>
 
